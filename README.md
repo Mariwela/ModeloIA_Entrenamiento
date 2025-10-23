@@ -20,7 +20,7 @@ Utiliza la biblioteca playwright para abrir una instancia de navegador (headless
 
 Una vez que la página está cargada, obtiene el código HTML.
 
-Utiliza BeautifulSoup para analizar el HTML y encontrar la tabla de medallas específica (clase wikitable).
+Analiza el HTML y encontrar la tabla de medallas específica.
 
 pandas se utiliza para leer directamente el HTML de la tabla y convertirlo en un DataFrame, una estructura de datos tabular conveniente para el procesamiento.
 
