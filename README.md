@@ -9,7 +9,7 @@ Primero creamos un entorno virtual:
 
 Luego instalamos dependencias:
 
-  pip install playwright bs4 pandas chromadb sentence_transformers lxml
+  pip install playwright pandas chromadb sentence_transformers lxml
 
   playwright install
 
