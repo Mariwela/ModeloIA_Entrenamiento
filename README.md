@@ -9,14 +9,14 @@ Primero creamos un entorno virtual:
 
 Luego instalamos dependencias:
 
-  pip install playwright pandas chromadb sentence_transformers lxml
+  pip install playwright pandas chromadb sentence_transformers lxml gradio chromadb python-dotenv
 
   playwright install
 
 
 ## 1. EXTRACCIÓN DE DATOS - scraper.py
 https://en.wikipedia.org/wiki/2024_Summer_Olympics_medal_table
-Utiliza la biblioteca playwright para abrir una instancia de navegador (headless) y navegar a la página de la tabla de medallas de los Juegos Olímpicos de Verano 2024 en Wikipedia.
+Utiliza la biblioteca playwright para abrir una instancia de navegador (headless) y navegar a las páginas de la tabla de medallas de los Juegos Olímpicos de Verano désde el 1996 hasta 2024 en Wikipedia.
 
 Una vez que la página está cargada, obtiene el código HTML.
 
@@ -31,13 +31,10 @@ Limpia el DataFrame de pandas de símbolos especiales y convierte las columnas d
 
 Embeddings: Configura la función de embedding para convertir el texto en vectores.
 
-El proyecto usa por defecto embeddings locales con SentenceTransformers. Si quieres integrar embeddings externos, adapta `vector_db.py`.
+El proyecto usa por defecto embeddings locales con SentenceTransformers.
 
 Crea una colección llamada "olympic_medals" en ChromaDB.
 
-Itera sobre cada fila del DataFrame y crea un texto descriptivo. Este texto se convierte en un vector (embedding) y se almacena junto con metadatos en la base de datos vectorial ChromaDB.
-
-Hace una consulta de demostración simple.
 ## 3. RAG - rag.py
 Obtiene los documentos vectoriales más relevantes a la consulta del usuario.
 
@@ -46,11 +43,8 @@ Analiza la consulta, valida datos y ordena el DataFrame real según el tipo de m
 Genera nuevos "documentos" de contexto a partir de los países con mejores resultados del DataFrame.
 
 Generación del Resumen: Utiliza los datos del DataFrame ordenado para construir una respuesta final textual que identifica al país líder y a otros destacados.
-## 4. ORQUESTACIÓN - main.py
-Orquesta todas las operaciones: obtiene los datos, crea la base de datos vectorial en ChromaDB, muestra consultas simples basadas en el ranking del DataFrame y demuestra el flujo RAG: consulta semántica + extracción del top real + generación de respuesta.
+## 4. rag_tools.py
 
-## 5. process_data.py
-Muestra los resultados de la consulta semántica en ChromaDB sin la lógica de ordenar el DataFrame por tipo de medalla.
 
 ## 6. TOOLS - tools.py
 Contiene un conjunto de funciones "tools" que llaman a APIs externas y devuelven resultados sencillos para enriquecer respuestas.
