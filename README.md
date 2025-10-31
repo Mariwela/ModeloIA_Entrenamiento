@@ -53,5 +53,5 @@ Contiene un conjunto de funciones "tools" que llaman a APIs externas y devuelven
 Se ha añadido una interfaz web con Gradio para interactuar con el flujo RAG y las tools.
 
 - La app scrapea la tabla, crea la colección vectorial y expone una caja de texto para consultas.
-- Permite seleccionar una tool (NewsAPI u OpenWeather) y un campo de entrada para el parámetro de la tool (por ejemplo, la ciudad para OpenWeather).
-- Devuelve la respuesta RAG (resumen generado a partir de los datos) y el resultado de la tool seleccionada.
+- Output para las tools (NewsAPI u OpenWeather).
+- Devuelve la respuesta con un modelo llm y el RAG (resumen generado a partir de los datos) y el resultado de la tool seleccionada.
