@@ -68,6 +68,8 @@ python main.py --run
 
 ## 📂 Estructura del proyecto
 Archivo / Carpeta	Descripción
+### requirements.tx
+Lista de dependencias Python necesarias para ejecutar el agente.
 ### app_gradio.py
 Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
 ### main.py
@@ -82,8 +84,6 @@ Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto de
 Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
 ### agente.p
 Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
-### requirements.tx
-Lista de dependencias Python necesarias para ejecutar el agente.
 ### README.md
 Este documento, con toda la explicación del proyecto.
 ## 💡 Ejemplos de interacción
