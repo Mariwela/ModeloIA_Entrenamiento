@@ -1,8 +1,0 @@
-playwright
-pandas
-chromadb
-python-dotenv
-sentence_transformers
-gradio
-requests
-lxml
