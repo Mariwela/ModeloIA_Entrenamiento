@@ -5,7 +5,9 @@ Un asistente conversacional avanzado capaz de responder preguntas sobre los Jueg
 ## 🚀 Características principales
 
 ✅ RAG + Gemini: búsqueda contextual en datos y generación natural de respuestas
+
 ✅ Datos reales: medallero olímpico 2000–2024
+
 ✅ Herramientas integradas:
 
 🧠 Datos curiosos sobre los Juegos
@@ -21,11 +23,14 @@ Un asistente conversacional avanzado capaz de responder preguntas sobre los Jueg
 ## ⚙️ Instalación
 ### 1. Clona el repositorio
 git clone https://github.com/usuario/agente-olimpico.git
+
 cd agente-olimpico
 
 ### 2. Crea un entorno virtual
 python -m venv venv
+
 source venv/bin/activate    # En Linux / macOS
+
 venv\Scripts\activate       # En Windows
 
 ### 3. Instala dependencias
@@ -36,7 +41,9 @@ pip install -r requirements.txt
 En el directorio raíz, crea un archivo .env con tus claves API:
 
 GOOGLE_API_KEY=tu_clave_de_gemini
+
 OPENWEATHER_KEY=tu_clave_de_openweather
+
 CHROMA_DIR=./chroma_db
 
 ## 🧠 Uso
