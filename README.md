@@ -68,17 +68,27 @@ python main.py --run
 
 ## 📂 Estructura del proyecto
 Archivo / Carpeta	Descripción
-### app_gradio.py	Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
-### main.py	Ejecuta el agente en modo consola, ideal para depuración y pruebas sin entorno gráfico.
-### agente.py	Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
-### ools.py	Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
-### rag.py	Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
-### olympic_medals_2000_2024.csv	Dataset del medallero olímpico histórico (2000–2024) con columnas: país, año, medallas, ranking, totales, etc.
-### chroma_db/	Carpeta persistente de la base vectorial usada por RAG para búsquedas semánticas.
-### requirements.txt	Lista de dependencias Python necesarias para ejecutar el agente.
-### README.md	Este documento, con toda la explicación del proyecto.
+### app_gradio.py
+Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
+### main.py
+Ejecuta el agente en modo consola, ideal para depuración y pruebas sin entorno gráfico.
+### agente.p
+Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
+### ools.p
+Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
+### rag.py
+Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
+### olympic_medals_2000_2024.csv
+Dataset del medallero olímpico histórico (2000–2024) con columnas: país, año, medallas, ranking, totales, etc.
+### chroma_db/
+Carpeta persistente de la base vectorial usada por RAG para búsquedas semánticas.
+### requirements.tx
+Lista de dependencias Python necesarias para ejecutar el agente.
+### README.md
+Este documento, con toda la explicación del proyecto.
 ## 💡 Ejemplos de interacción
 Ejemplo de pregunta	Tipo de respuesta
+
 “¿Qué país ganó más medallas de oro en 2020?”	📊 Datos estructurados (CSV - medallero)
 
 “Compara España y Italia en 2020”	📈 Tool de comparación numérica
