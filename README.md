@@ -10,15 +10,13 @@ Un asistente conversacional avanzado capaz de responder preguntas sobre los Jueg
 
 ✅ Herramientas integradas:
 
+📊 Comparación entre países por resultados
+
 🧠 Datos curiosos sobre los Juegos
 
 🌤️ Clima actual (API OpenWeather)
 
 ⏰ Hora y fecha actuales
-
-📊 Comparación entre países por resultados
-✅ Interfaz visual moderna con Gradio
-✅ Soporte de preguntas semánticas y numéricas
 
 ## ⚙️ Instalación
 ### 1. Clona el repositorio
@@ -81,7 +79,7 @@ Construye y gestiona la base vectorial ChromaDB chroma_db/. Convierte los textos
 ### rag.py
 Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
 ### tools.p
-Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
+Contiene las herramientas funcionales (Tools): comparación entre países, datos curiosos, hora actual y clima (OpenWeather) .
 ### agente.p
 Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
 ### README.md
