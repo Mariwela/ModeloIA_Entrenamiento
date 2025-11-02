@@ -72,16 +72,16 @@ Archivo / Carpeta	Descripción
 Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
 ### main.py
 Ejecuta el agente en modo consola, ideal para depuración y pruebas sin entorno gráfico.
-### agente.p
-Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
-### ools.p
-Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
+### scraping.py
+Script de web scraping para obtener o actualizar los datos del medallero olímpico desde fuentes online (Wikipedia). Limpia, estructura y guarda los resultados en olympic_medals_2000_2024.csv, el dataset del medallero olímpico histórico con columnas: país, año, medallas, ranking, totales, etc.
+### vector_db.py
+Construye y gestiona la base vectorial ChromaDB chroma_db/. Convierte los textos del dataset en embeddings (vectores numéricos) para que el sistema RAG pueda realizar búsquedas semánticas eficientes.
 ### rag.py
 Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
-### olympic_medals_2000_2024.csv
-Dataset del medallero olímpico histórico (2000–2024) con columnas: país, año, medallas, ranking, totales, etc.
-### chroma_db/
-Carpeta persistente de la base vectorial usada por RAG para búsquedas semánticas.
+### tools.p
+Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
+### agente.p
+Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
 ### requirements.tx
 Lista de dependencias Python necesarias para ejecutar el agente.
 ### README.md
