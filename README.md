@@ -1,57 +1,99 @@
-# Scraping-con-Playwright-RAG-TOOLS-GRADIO
-Scraping de una página de Juegos Olýmpicos, almacena esta información en una base de datos vectorial (ChromaDB) y usa RAG para dar respuestas sobre los rankings de medallas
+🏅 Agente Olímpico Inteligente
 
-Primero creamos un entorno virtual:
+Un asistente conversacional avanzado capaz de responder preguntas sobre los Juegos Olímpicos (2000–2024), comparar países, ofrecer datos curiosos, consultar el clima o la hora actual, combinando IA generativa (Gemini), RAG (búsqueda semántica) y herramientas funcionales (Tools).
 
-  python -m venv venv
+🚀 Características principales
 
-  venv\Scripts\activate
+✅ RAG + Gemini: búsqueda contextual en datos y generación natural de respuestas
+✅ Datos reales: medallero olímpico 2000–2024
+✅ Herramientas integradas:
 
-Luego instalamos dependencias:
+🧠 Datos curiosos sobre los Juegos
 
-  pip install playwright pandas chromadb sentence_transformers lxml gradio chromadb python-dotenv
+🌤️ Clima actual (API OpenWeather)
 
-  playwright install
+⏰ Hora y fecha actuales
+
+📊 Comparación entre países por resultados
+✅ Interfaz visual moderna con Gradio
+✅ Soporte de preguntas semánticas y numéricas
+
+⚙️ Instalación
+1. Clona el repositorio
+git clone https://github.com/usuario/agente-olimpico.git
+cd agente-olimpico
+
+2. Crea un entorno virtual
+python -m venv venv
+source venv/bin/activate    # En Linux / macOS
+venv\Scripts\activate       # En Windows
+
+3. Instala dependencias
+pip install -r requirements.txt
+
+4. Crea el archivo .env
+
+En el directorio raíz, crea un archivo .env con tus claves API:
+
+GOOGLE_API_KEY=tu_clave_de_gemini
+OPENWEATHER_KEY=tu_clave_de_openweather
+CHROMA_DIR=./chroma_db
+
+🧠 Uso
+🔹 Modo interfaz (Gradio)
+
+Lanza la interfaz gráfica:
+
+python app_gradio.py
 
 
-## 1. EXTRACCIÓN DE DATOS - scraper.py
-https://en.wikipedia.org/wiki/2024_Summer_Olympics_medal_table
-Utiliza la biblioteca playwright para abrir una instancia de navegador (headless) y navegar a las páginas de la tabla de medallas de los Juegos Olímpicos de Verano désde el 1996 hasta 2024 en Wikipedia.
+Se abrirá en tu navegador una ventana tipo chat donde puedes preguntar libremente:
 
-Una vez que la página está cargada, obtiene el código HTML.
+Ejemplos:
 
-Analiza el HTML y encontrar la tabla de medallas específica.
+“¿Qué país ganó más medallas de oro en 2020?”
 
-pandas se utiliza para leer directamente el HTML de la tabla y convertirlo en un DataFrame, una estructura de datos tabular conveniente para el procesamiento.
+“Compara España y Italia en 2020.”
 
-Normaliza las columnas a ["Rank", "Nation", "Gold", "Silver", "Bronze", "Total"] y devuelve el DataFrame.
+“Dame un dato curioso sobre los Juegos Olímpicos.”
 
-## 2. ALMACENAMIENTO VECTORIAL - vector_db.py
-Limpia el DataFrame de pandas de símbolos especiales y convierte las columnas de medallas y Rank a tipos de datos enteros.
+“Qué clima hace en Tokio ahora mismo.”
 
-Embeddings: Configura la función de embedding para convertir el texto en vectores.
+🔹 Modo consola
 
-El proyecto usa por defecto embeddings locales con SentenceTransformers.
+Para probarlo en terminal:
 
-Crea una colección llamada "olympic_medals" en ChromaDB.
+python main.py --run
 
-## 3. RAG - rag.py
-Obtiene los documentos vectoriales más relevantes a la consulta del usuario.
+📂 Estructura del proyecto
+Archivo / Carpeta	Descripción
+app_gradio.py	Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
+main.py	Ejecuta el agente en modo consola, ideal para depuración y pruebas sin entorno gráfico.
+agente.py	Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
+tools.py	Contiene las herramientas funcionales (Tools): hora actual, clima (OpenWeather), comparación entre países y datos curiosos.
+rag.py	Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
+olympic_medals_2000_2024.csv	Dataset del medallero olímpico histórico (2000–2024) con columnas: país, año, medallas, ranking, totales, etc.
+chroma_db/	Carpeta persistente de la base vectorial usada por RAG para búsquedas semánticas.
+.env	Variables de entorno que guardan las claves de las APIs (Gemini, OpenWeather). ⚠️ No subir este archivo a GitHub.
+requirements.txt	Lista de dependencias Python necesarias para ejecutar el agente.
+README.md	Este documento, con toda la explicación del proyecto.
+💡 Ejemplos de interacción
+Ejemplo de pregunta	Tipo de respuesta
+“¿Qué país ganó más medallas de oro en 2020?”	📊 Datos estructurados (CSV - medallero)
+“Compara España y Italia en 2020”	📈 Tool de comparación numérica
+“Dame un dato curioso sobre los Juegos Olímpicos”	🧠 Tool: dato curioso aleatorio
+“Qué clima hace en París”	🌦️ Tool: API de OpenWeather
+“Qué hora es ahora”	🕒 Tool: hora local actual
+🎨 Interfaz (Gradio)
 
-Analiza la consulta, valida datos y ordena el DataFrame real según el tipo de medalla extraído
+La interfaz usa tonos verde oscuro con un diseño limpio y elegante, incluyendo:
 
-Genera nuevos "documentos" de contexto a partir de los países con mejores resultados del DataFrame.
+Fondo degradado verde
 
-Generación del Resumen: Utiliza los datos del DataFrame ordenado para construir una respuesta final textual que identifica al país líder y a otros destacados.
-## 4. rag_tools.py
+Ventana de chat con burbujas diferenciadas para usuario y bot
 
+Botón de enviar grande (🚀)
 
-## 6. TOOLS - tools.py
-Contiene un conjunto de funciones "tools" que llaman a APIs externas y devuelven resultados sencillos para enriquecer respuestas.
+Botón de limpiar pequeño (🧹)
 
-## 7. INTERFAZ - gradio_app.py
-Se ha añadido una interfaz web con Gradio para interactuar con el flujo RAG y las tools.
-
-- La app scrapea la tabla, crea la colección vectorial y expone una caja de texto para consultas.
-- Output para las tools (NewsAPI u OpenWeather).
-- Devuelve la respuesta con un modelo llm y el RAG (resumen generado a partir de los datos) y el resultado de la tool seleccionada.
+Zona de ejemplos y créditos
