@@ -66,7 +66,7 @@ python main.py --run
 
 ## 📂 Estructura del proyecto
 Archivo / Carpeta	Descripción
-### requirements.tx
+### requirements.txt
 Lista de dependencias Python necesarias para ejecutar el agente.
 ### app_gradio.py
 Define la interfaz gráfica con Gradio. Contiene el diseño visual (chat, colores, botones, etc.) y las funciones de interacción entre usuario y agente.
@@ -78,9 +78,9 @@ Script de web scraping para obtener o actualizar los datos del medallero olímpi
 Construye y gestiona la base vectorial ChromaDB chroma_db/. Convierte los textos del dataset en embeddings (vectores numéricos) para que el sistema RAG pueda realizar búsquedas semánticas eficientes.
 ### rag.py
 Implementa el sistema RAG (Retrieval-Augmented Generation). Recupera contexto desde una base vectorial (ChromaDB) y lo combina con el modelo Gemini para generar respuestas precisas.
-### tools.p
+### tools.py
 Contiene las herramientas funcionales (Tools): comparación entre países, datos curiosos, hora actual y clima (OpenWeather) .
-### agente.p
+### agente.py
 Núcleo del agente inteligente. Decide si usar una herramienta, una búsqueda semántica o el modelo generativo. Combina lógica de decisión y formato de respuesta.
 ### README.md
 Este documento, con toda la explicación del proyecto.
