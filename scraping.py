@@ -1,8 +1,3 @@
-"""
-scraping.py — Extracción de medalleros olímpicos (2000–2024) usando Playwright.
-Corrige errores de parseo en Tokio/París 2024.
-"""
-
 import re
 import pandas as pd
 from tqdm import tqdm
@@ -104,3 +99,4 @@ if __name__ == "__main__":
     df = scrape_all()
     df.to_csv("olympic_medals_2000_2024.csv", index=False)
     print("✅ Archivo guardado: olympic_medals_2000_2024.csv")
+
