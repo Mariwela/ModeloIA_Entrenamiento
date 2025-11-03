@@ -62,6 +62,10 @@ Ejemplos:
 “Qué clima hace en Tokio ahora mismo.”
 
 ### 🔹 Modo consola
+python main.py --scrape
+
+python main.py --build-db
+
 python main.py --run
 
 ## 📂 Estructura del proyecto
