@@ -2,7 +2,7 @@ import argparse
 import pandas as pd
 from vector_db import VectorDB
 from rag import RAG
-
+from scraping import scrape_all 
 
 def build_database():
     """Reconstruye la base de datos desde el CSV."""
@@ -17,6 +17,12 @@ def build_database():
     vdb.upsert_from_dataframe(df)
     print("🎯 Base de datos Chroma reconstruida con éxito.")
 
+def run_scraping():
+    """Ejecuta scraping completo (2000–2024) y guarda el CSV."""
+    print("🏗️ Iniciando scraping (2000–2024)...")
+    df = scrape_all()
+    df.to_csv("olympic_medals_2000_2024.csv", index=False)
+    print("✅ Archivo guardado: olympic_medals_2000_2024.csv")
 
 def interactive_rag():
     """Ejecuta el modo de preguntas RAG."""
@@ -39,17 +45,22 @@ def interactive_rag():
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Olympic RAG Demo")
+    parser = argparse.ArgumentParser(description="🏅 Olympic RAG + Tools + Scraping")
+    parser.add_argument("--scrape", action="store_true", help="Ejecuta el scraping (2000–2024)")
     parser.add_argument("--build-db", action="store_true", help="Reconstruye la base de datos desde el CSV")
     parser.add_argument("--run", action="store_true", help="Ejecuta el chat RAG")
 
     args = parser.parse_args()
 
-    if args.build_db:
+    if args.scrape:
+        run_scraping()
+    elif args.build_db:
         build_database()
     elif args.run:
         interactive_rag()
     else:
         print("⚙️ Usa uno de los modos:\n")
+        print("   python main.py --scrape     → descarga y procesa los datos")
         print("   python main.py --build-db   → reconstruye la base de datos")
         print("   python main.py --run        → inicia el chat interactivo")
+
