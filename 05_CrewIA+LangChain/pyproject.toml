@@ -1,0 +1,25 @@
+[project]
+name = "olympic_games_bilingual_academic_research_system"
+version = "0.1.0"
+description = "olympic_games_bilingual_academic_research_system using crewAI"
+authors = [{ name = "Your Name", email = "you@example.com" }]
+requires-python = ">=3.10,<3.14"
+dependencies = [
+    "crewai[litellm,tools]==1.4.1",
+    "pydantic",
+]
+
+[project.scripts]
+olympic_games_bilingual_academic_research_system = "olympic_games_bilingual_academic_research_system.main:run"
+run_crew = "olympic_games_bilingual_academic_research_system.main:run"
+train = "olympic_games_bilingual_academic_research_system.main:train"
+replay = "olympic_games_bilingual_academic_research_system.main:replay"
+test = "olympic_games_bilingual_academic_research_system.main:test"
+run_with_trigger = "olympic_games_bilingual_academic_research_system.main:run_with_trigger"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.crewai]
+type = "crew"
