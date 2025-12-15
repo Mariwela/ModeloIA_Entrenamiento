@@ -10,7 +10,7 @@ from crewai_tools import (
 	ScrapeWebsiteTool,
 	ArxivPaperTool
 )
-
+from olympic_games_bilingual_academic_research_system.tools.olympic_match_analyzer import OlympicMatchAnalyzer
 
 
 
@@ -137,6 +137,29 @@ class OlympicGamesBilingualAcademicResearchSystemCrew:
             
         )
     
+    @agent
+    def olympic_match_analysis_specialist(self) -> Agent:
+        
+        return Agent(
+            config=self.agents_config["olympic_match_analysis_specialist"],
+            
+            
+            tools=[				OlympicMatchAnalyzer()],
+            reasoning=False,
+            max_reasoning_attempts=None,
+            inject_date=True,
+            allow_delegation=False,
+            max_iter=25,
+            max_rpm=None,
+            
+            max_execution_time=None,
+            llm=LLM(
+                model="openai/gpt-4o-mini",
+                temperature=0.7,
+            ),
+            
+        )
+    
 
     
     @task
@@ -152,6 +175,15 @@ class OlympicGamesBilingualAcademicResearchSystemCrew:
     def olympic_games_rag_research(self) -> Task:
         return Task(
             config=self.tasks_config["olympic_games_rag_research"],
+            markdown=False,
+            
+            
+        )
+    
+    @task
+    def olympic_match_text_analysis(self) -> Task:
+        return Task(
+            config=self.tasks_config["olympic_match_text_analysis"],
             markdown=False,
             
             

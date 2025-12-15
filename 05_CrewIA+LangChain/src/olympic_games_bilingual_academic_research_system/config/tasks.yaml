@@ -39,6 +39,23 @@ olympic_games_rag_research:
   agent: olympic_games_research_agent
   context:
   - olympic_topic_validation
+olympic_match_text_analysis:
+  description: Analyze the provided Olympic match text focusing on {specific_aspect}.
+    Use the Olympic Match Analyzer tool to extract and structure all relevant information
+    from the match description including teams/athletes, scores, key moments, performance
+    statistics, and tactical observations. Generate a comprehensive analysis that
+    covers match overview, final results, key moments, performance analysis, statistics,
+    and Olympic significance. The analysis should be thorough and provide insights
+    into the strategic and tactical elements of the competition.
+  expected_output: 'A detailed match analysis in markdown format containing: 1) Match
+    Overview with sport, event, participants, and venue information, 2) Final Result
+    with scores and medal implications, 3) Key Moments highlighting turning points
+    and crucial plays, 4) Performance Analysis with tactical observations, 5) Statistics
+    and performance metrics, 6) Context & Significance explaining the Olympic importance
+    and broader implications of the match results.'
+  agent: olympic_match_analysis_specialist
+  context:
+  - olympic_topic_validation
 academic_content_generation:
   description: Transform the research findings into a well-structured, scholarly document
     about {research_topic} focusing on {specific_aspect}. Use prompt templates to
@@ -55,6 +72,7 @@ academic_content_generation:
   agent: academic_writing_specialist
   context:
   - olympic_games_rag_research
+  - olympic_match_text_analysis
 critical_academic_review:
   description: Conduct thorough peer review of the academic document on {research_topic},
     focusing on {specific_aspect} analysis. Evaluate factual accuracy, logical consistency,
