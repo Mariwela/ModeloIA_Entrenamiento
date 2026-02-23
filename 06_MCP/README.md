@@ -1,23 +1,47 @@
-06_MCP/   
-│
-├── mcp_server/                # Servidor MCP principal
-│   ├── server.py              # Archivo principal del servidor MCP
-│   └── tools/                 # Carpeta con tus tools
-│       ├── api_tools.py       # Tool que consume API externa
-│       └── llm_tools.py       # Tool que usa LLM
-│
-├── agent/                     # Carpeta para tu agente
-│   └── agent.py               # LangGraph Agent o cualquier otro agente
-│
-├── ui/                        # Interfaz de usuario (opcional: Gradio o Streamlit)
-│   └── app.py                 # Archivo principal de la UI
-│
-├── requirements.txt           # Librerías necesarias para el proyecto
-├── README.md                  # Explicación del proyecto, instrucciones
-└── .env                       # Variables de entorno (API keys, puertos, etc.)
+Activar el entorno virtual:
+python -m venv venv
+source venv/bin/activate   # o venv\Scripts\activate en Windows
 
-1. Copiar el .env.example a .env y establecer las variables de entorno
-2. Iniciar servidor: python mcp_server/server.py
-3. Probar el servidor desde el inspector MCP --> npx @modelcontextprotocol/inspector
-    - Para streamable-http, endpoint: http://localhost:8000/mcp
+
+Instalas dependencias
+pip install -r requirements.txt
+
+Instala el Inspector global de MCP:
+npm install -g @modelcontextprotocol/inspector
+
+Crea un archivo .env en la raíz del proyecto y añade tu API Key:
+GROQ_API_KEY=tu_clave_de_groq_aqui
+
+
+Guía de Ejecución:
+
+Terminal 1 (Inspector stdio):
+mcp-inspector python server/main.py
+
+Terminal 2 (Servidor para Cherry Studio):
+python server/main.py sse
+
+Terminal 3 (Probar Agente LangGraph):
+Configurar el enpoint "zapier_webhook_url" en tools/external_mcp.py
+python agents/agente_langgraph.py
+
+Terminal 4 (Interfaz Streamlit):
+streamlit run server/app_ui.py
+
+
+-----------------------------------------------------
+Cherry Studio web oficial: https://www.cherry-ai.com/
+Busca el icono de Ajustes (Settings) -> haz clic en MCP Server -> Haz clic en el botón + Add ->
+Configúralo así:
+Name: Medallero Olímpico
+Type: SSE
+URL: http://127.0.0.1:8000/sse
+
+Pulsa Save y asegúrate de que el interruptor esté en ON
+
+Default Topic chat -> Default Assistant -> MCP Servers -> elegir manual y activar tu MCP Server
+------------------------------------------------------
+
+cerrar el proceso que está bloqueando el puerto 6277:
+Stop-Process -Id (Get-NetTCPConnection -LocalPort 6277).OwningProcess -Force
 

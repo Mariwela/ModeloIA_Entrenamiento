@@ -1,2 +1,39 @@
-.env
+# Entorno virtual
 .venv/
+venv/
+ENV/
+env/
+
+# Archivos Python compilados
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Configuración local
+.env
+.env.*.local
+*.local
+06_MCP/.env
+
+# Logs
+*.log
+logs/
+*.sqlite3
+
+# Carpeta de dependencias (si no usas requirements.txt)
+pip-wheel-metadata/
+*.egg-info/
+
+# IDEs / editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Output de FastAPI / LangGraph
+*.db
+*.cache
