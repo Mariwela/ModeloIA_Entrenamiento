@@ -119,10 +119,15 @@ if __name__ == "__main__":
     print("🚀 INICIANDO AGENTE LANGGRAPH...")
     print("-" * 30)
     
-    # Imprimir el grafo en texto plano
+    # Imprimir el grafo
     try:
         print("\n ESTRUCTURA DEL GRAFO:")
+        # 1. Dibujo en la terminal
         app.get_graph().print_ascii()
+        # 2. Guardar imagen para la documentación
+        with open("graph.png", "wb") as f:
+            f.write(app.get_graph().draw_mermaid_png())
+        print("✅ Imagen del grafo guardada como 'graph.png'")
     except Exception as e:
         print(f"No se pudo imprimir el grafo: {e}")
 
